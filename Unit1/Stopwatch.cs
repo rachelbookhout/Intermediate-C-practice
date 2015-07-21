@@ -2,6 +2,11 @@
 
 namespace Methods
 {
+
+
+	//must be able to start and stop constantly
+	//raises an exception if you try to start a stopwatch twice (InValidOperationException
+
 	public class Stopwatch
 	{
 		// intialize it with bool false
