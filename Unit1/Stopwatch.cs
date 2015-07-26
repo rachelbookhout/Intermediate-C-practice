@@ -10,46 +10,39 @@ namespace Methods
 	public class Stopwatch
 	{
 		// intialize it with bool false
-		private bool started = false;
-		public bool Started 
-		{
-			get 
-			{ 
-				return started;
-			}
-			set 
-			{ 
-				started = value;
-			}
-			}
+		private bool _started = false;
+		private DateTime _startTime;
+		private DateTime _endTime;
 
-			public DateTime Start()
+			public void  Start()
 			{
-				DateTime start = DateTime.Now;
+				_startTime = DateTime.Now;
 				//do an if/else method -> throws exception if already true
-				if (started == false) 
+				if (_started)
 				{
-					bool Started = true;
-					return start;
+				throw new InvalidOperationException ("Stopwatch is already running");
+					
 				}
-				else 
-				{
-					throw new InvalidOperationException ();
-				}
-			}
-			
-			public DateTime Stop()
-				{
-					DateTime stop = DateTime.Now;
-					bool Started = false;
-					return stop;
-				}
+			_startTime = DateTime.Now;
+			_started = true;
 
-			public TimeSpan Span(DateTime start, DateTime stop)
-				{
-					TimeSpan span = start - stop;
-					return span;
-				}
+			}
+
+			public void  Stop()
+			{
+					
+			if ( !_started)
+			{
+				throw new InvalidOperationException ("Stopwatch hasn't been started");
+			}
+			_endTime = DateTime.Now;
+			_started = false;
+			}
+
+			public TimeSpan Span()
+			{
+			return _endTime - _startTime;
+			}
 
 			}
 		}
